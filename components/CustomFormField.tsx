@@ -5,11 +5,11 @@ import { Control } from "react-hook-form";
 
 import PhoneInput, { type Value }  from 'react-phone-number-input'
 
-import 'react-phone-number-input/style.css'
-
 import { Input } from "./ui/input";
 import { FormFieldType } from "./forms/PatientForm";
-import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from "./ui/form";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "./ui/form";
+
+import 'react-phone-number-input/style.css'
 
 interface CustomProps {
   control        : Control<any>;
