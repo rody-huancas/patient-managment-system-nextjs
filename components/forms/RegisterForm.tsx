@@ -110,7 +110,7 @@ export function RegisterForm({ user }: { user: User }) {
                     GenderOptions.map(option => (
                       <div key={option} className="radio-group">
                         <RadioGroupItem value={option} id={option} />
-                        <Label htmlFor={option} className="cursor-point">
+                        <Label htmlFor={option} className="cursor-pointer">
                           {option}
                         </Label>
                       </div>
@@ -123,15 +123,49 @@ export function RegisterForm({ user }: { user: User }) {
         </div>
 
         <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="address"
+            label="Dirección"
+            placeholder="Los Álamos 421"
+          />
 
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="occupation"
+            label="Ocupación"
+            placeholder="Ingeniero de Sistemas"
+          />
         </div>
 
         <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="emergency"
+            label="Nombre del Contacto de Emergencia"
+            placeholder="Nombre del Contacto"
+          />
 
+          <CustomFormField
+            fieldType={FormFieldType.PHONE_INPUT}
+            control={form.control}
+            name="emergencyContactNumber"
+            label="Número del Contacto de Emergencia"
+            placeholder="(+51) 907 135 664"
+          />
         </div>
 
-        <div className="flex flex-col gap-6 xl:flex-row">
+        <section className="space-y-4">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Información del Médico</h2>
+          </div>
+        </section>
 
+        <div className="flex flex-col gap-6 xl:flex-row">
+            
         </div>
 
         <SubmitButton isLoading={isLoading}>Empezar</SubmitButton>
