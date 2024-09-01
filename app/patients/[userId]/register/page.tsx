@@ -1,10 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
 
 import RegisterForm from "@/components/forms/RegisterForm";
 
-import { SearchParamProps } from "@/types";
 import { getUser } from "@/lib/actions/patient.actions";
+import { SearchParamProps } from "@/types";
 
 const Register = async ({ params: { userId } }: SearchParamProps) => {
   const user = await getUser(userId);
@@ -23,14 +22,9 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
 
           <RegisterForm user={user} />
 
-          <div className="text-14-regular mt-20 pb-10 flex justify-between">
-            <p className="justify-items-end text-dark-600 xl:text-left">
-              © 2024 CarePluse
-            </p>
-            <Link href={"/?admin=true"} className="text-green-500">
-              Admin
-            </Link>
-          </div>
+          <p className="copyright py-12">
+            &copy; {new Date().getFullYear()} CarePluse
+          </p>
         </div>
       </section>
 
