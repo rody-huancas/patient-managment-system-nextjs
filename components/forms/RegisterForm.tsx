@@ -15,9 +15,11 @@ import CustomFormField, { FormFieldType } from "../CustomFormField";
 
 import { User } from "@/types";
 import { createUser } from "@/lib/actions/patient.actions";
-import { GenderOptions } from "@/constants";
+import { Doctors, GenderOptions } from "@/constants";
 import { UserFormValidation } from "@/lib/validation";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { SelectContent, SelectItem } from "@radix-ui/react-select";
+import Image from "next/image";
 
 export function RegisterForm({ user }: { user: User }) {
   const router = useRouter();
@@ -163,6 +165,29 @@ export function RegisterForm({ user }: { user: User }) {
             <h2 className="sub-header">Información del Médico</h2>
           </div>
         </section>
+
+        <CustomFormField
+            fieldType={FormFieldType.SELECT}
+            control={form.control}
+            name="primaryPhysician"
+            label="Médico de atención primaria"
+            placeholder="Seleccionar Médico"
+          >
+            {Doctors.map((doctor, i) => (
+              <SelectItem key={doctor.name + i} value={doctor.name}>
+                <div className="flex cursor-pointer items-center gap-2">
+                  <Image
+                    src={doctor.image}
+                    width={32}
+                    height={32}
+                    alt="doctor"
+                    className="rounded-full border border-dark-500"
+                  />
+                  <p>{doctor.name}</p>
+                </div>
+              </SelectItem>
+            ))}
+          </CustomFormField>
 
         <div className="flex flex-col gap-6 xl:flex-row">
             

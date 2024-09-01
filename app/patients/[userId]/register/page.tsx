@@ -23,7 +23,7 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
 
           <RegisterForm user={user} />
 
-          <div className="text-14-regular mt-20 flex justify-between">
+          <div className="text-14-regular mt-20 pb-10 flex justify-between">
             <p className="justify-items-end text-dark-600 xl:text-left">
               © 2024 CarePluse
             </p>
