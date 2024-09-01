@@ -11,6 +11,7 @@ import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/f
 
 import 'react-phone-number-input/style.css'
 import "react-datepicker/dist/react-datepicker.css";
+import { Textarea } from "./ui/textarea";
 
 export enum FormFieldType {
   INPUT       = "input",
@@ -41,28 +42,37 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
 
   const { fieldType, iconSrc, iconAlt, placeholder, showTimeSelect, dateFormat, renderSkeleton } = props;
 
-  switch (props.fieldType) {
+  switch (fieldType) {
     case FormFieldType.INPUT:
       return (
         <div className="flex rounded-md border border-dark-500 bg-dark-400">
-          {props.iconSrc && (
+          {iconSrc && (
             <Image
-              src={props.iconSrc}
+              src={iconSrc}
               height={24}
               width={24}
-              alt={props.iconAlt || "icon"}
+              alt={iconAlt || "icon"}
               className="ml-2"
             />
           )}
           <FormControl>
             <Input
-              placeholder={props.placeholder}
+              placeholder={placeholder}
               {...field}
               className="shad-input border-0"
             />
           </FormControl>
         </div>
       );
+    case FormFieldType.TEXTAREA:
+      return (
+        <Textarea 
+          placeholder={placeholder}
+          {...field}
+          className="shad-textArea"
+          disabled={props.disabled}
+        />
+      )
     case FormFieldType.PHONE_INPUT:
       return (
         <FormControl>

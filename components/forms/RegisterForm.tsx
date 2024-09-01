@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -8,18 +9,16 @@ import { Label } from "@radix-ui/react-label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Form, FormControl } from "@/components/ui/form";
-
 import SubmitButton from "../SubmitButton";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 
 import { User } from "@/types";
 import { createUser } from "@/lib/actions/patient.actions";
-import { Doctors, GenderOptions } from "@/constants";
+import { SelectItem } from "../ui/select";
+import { Form, FormControl } from "@/components/ui/form";
 import { UserFormValidation } from "@/lib/validation";
+import { Doctors, GenderOptions } from "@/constants";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { SelectContent, SelectItem } from "@radix-ui/react-select";
-import Image from "next/image";
 
 export function RegisterForm({ user }: { user: User }) {
   const router = useRouter();
@@ -167,30 +166,80 @@ export function RegisterForm({ user }: { user: User }) {
         </section>
 
         <CustomFormField
-            fieldType={FormFieldType.SELECT}
-            control={form.control}
-            name="primaryPhysician"
-            label="Médico de atención primaria"
-            placeholder="Seleccionar Médico"
-          >
-            {Doctors.map((doctor, i) => (
-              <SelectItem key={doctor.name + i} value={doctor.name}>
-                <div className="flex cursor-pointer items-center gap-2">
-                  <Image
-                    src={doctor.image}
-                    width={32}
-                    height={32}
-                    alt="doctor"
-                    className="rounded-full border border-dark-500"
-                  />
-                  <p>{doctor.name}</p>
-                </div>
-              </SelectItem>
-            ))}
-          </CustomFormField>
+          fieldType={FormFieldType.SELECT}
+          control={form.control}
+          name="primaryPhysician"
+          label="Médico de atención primaria"
+          placeholder="Seleccionar Médico"
+        >
+          {Doctors.map((doctor, i) => (
+            <SelectItem key={doctor.name + i} value={doctor.name}>
+              <div className="flex cursor-pointer items-center gap-2">
+                <Image
+                  src={doctor.image}
+                  width={32}
+                  height={32}
+                  alt="doctor"
+                  className="rounded-full border border-dark-500"
+                />
+                <p>{doctor.name}</p>
+              </div>
+            </SelectItem>
+          ))}
+        </CustomFormField>
 
         <div className="flex flex-col gap-6 xl:flex-row">
-            
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="insuranceProvider"
+            label="Proveedor de seguros"
+            placeholder="Cruz Roja"
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.INPUT}
+            control={form.control}
+            name="insurancePolicyNumber"
+            label="Número del Proveedor de Seguro"
+            placeholder="ABC123456"
+          /> 
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="allergies"
+            label="Alergias (si las hubiera)"
+            placeholder="Maní, Penicilina, Polen"
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="currentMedication"
+            label="Medicación Actual"
+            placeholder="Ibuprofeno 200mg, Paracetamol 500mg"
+          /> 
+        </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row">
+          <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="familyMedicalHistory"
+            label="Historial Médico Familiar"
+            placeholder="La madre tiene neumonía, el padre tiene una enfermedad cardíaca."
+          />
+
+          <CustomFormField
+            fieldType={FormFieldType.TEXTAREA}
+            control={form.control}
+            name="pastMedicalHistory"
+            label="Historial Médico Anterior"
+            placeholder="Apendicectomía, Amigdalectomía"
+          /> 
         </div>
 
         <SubmitButton isLoading={isLoading}>Empezar</SubmitButton>
