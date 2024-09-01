@@ -72,7 +72,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           className="shad-textArea"
           disabled={props.disabled}
         />
-      )
+      );
     case FormFieldType.PHONE_INPUT:
       return (
         <FormControl>

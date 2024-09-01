@@ -10,15 +10,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import SubmitButton from "../SubmitButton";
+import { SelectItem } from "../ui/select";
+import { FileUploader } from "../FileUploader";
+import { Form, FormControl } from "@/components/ui/form";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import CustomFormField, { FormFieldType } from "../CustomFormField";
 
 import { User } from "@/types";
 import { createUser } from "@/lib/actions/patient.actions";
-import { SelectItem } from "../ui/select";
-import { Form, FormControl } from "@/components/ui/form";
 import { UserFormValidation } from "@/lib/validation";
-import { Doctors, GenderOptions } from "@/constants";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Doctors, GenderOptions, IdentificationTypes } from "@/constants";
 
 export function RegisterForm({ user }: { user: User }) {
   const router = useRouter();
@@ -241,6 +242,46 @@ export function RegisterForm({ user }: { user: User }) {
             placeholder="Apendicectomía, Amigdalectomía"
           /> 
         </div>
+
+        <section className="space-y-4">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Identificación y Verificación</h2>
+          </div>
+        </section>
+
+        <CustomFormField
+          fieldType={FormFieldType.SELECT}
+          control={form.control}
+          name="identificationType"
+          label="Tipo de Identificación"
+          placeholder="Seleccionar un tipo de identificación"
+        >
+          {IdentificationTypes.map((type) => (
+            <SelectItem key={type} value={type}>
+              {type}
+            </SelectItem>
+          ))}
+        </CustomFormField>
+
+        <CustomFormField
+          fieldType={FormFieldType.INPUT}
+          control={form.control}
+          name="identificationNumer"
+          label="Número de Identificación"
+          placeholder="71445774"
+        />
+
+        <CustomFormField
+          fieldType={FormFieldType.SKELETON}
+          control={form.control}
+          name="identificationDocument"
+          label="Copia escaneada del documento de identidad"
+          renderSkeleton={(field) => (
+            <FormControl>
+              <FileUploader files={field.value} onChange={field.onChange} />
+            </FormControl>
+          )}
+        />
 
         <SubmitButton isLoading={isLoading}>Empezar</SubmitButton>
       </form>
