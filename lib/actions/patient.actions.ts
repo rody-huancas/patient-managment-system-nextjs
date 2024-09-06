@@ -43,6 +43,7 @@ export const getUser = async (userId: string) => {
 
 // REGISTER PATIENT
 export const registerPatient = async ({ identificationDocument, ...patient }: RegisterUserParams) => {
+  console.log("entra");
   try {
     let file;
     if (identificationDocument) {
