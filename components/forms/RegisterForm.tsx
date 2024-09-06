@@ -32,7 +32,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       ...PatientFormDefaultValues,
-      name: user.name,
+      name : user.name,
       email: user.email,
       phone: user.phone,
     },
@@ -40,7 +40,7 @@ const RegisterForm = ({ user }: { user: User }) => {
 
   const onSubmit = async (values: z.infer<typeof PatientFormValidation>) => {
     setIsLoading(true);
-console.log("1");
+
     let formData;
     if (
       values.identificationDocument &&
@@ -54,7 +54,6 @@ console.log("1");
       formData.append("blobFile", blobFile);
       formData.append("fileName", values.identificationDocument[0].name);
     }
-    console.log("2");
 
     try {
       const patient = {
@@ -82,10 +81,8 @@ console.log("1");
           : undefined,
         privacyConsent: values.privacyConsent,
       };
-      console.log("3");
 
       const newPatient = await registerPatient(patient);
-      console.log("4");
 
       if (newPatient) {
         router.push(`/patients/${user.$id}/new-appointment`);
