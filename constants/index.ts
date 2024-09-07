@@ -8,7 +8,7 @@ export const PatientFormDefaultValues = {
   email                 : "",
   phone                 : "",
   birthDate             : new Date(Date.now()),
-  gender                : "Hombre" as Gender,
+  gender                : "Masculino" as Gender,
   address               : "",
   occupation            : "",
   emergencyContactName  : "",
