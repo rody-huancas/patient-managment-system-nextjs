@@ -56,13 +56,13 @@ export const PatientFormValidation = z.object({
     .min(2, "El número de póliza debe contener mínimo 2 caracteres")
     .max(50, "El número de póliza debe contener máximo 50 caracteres"),
   allergies: z.string().optional(),
-  currentMedication: z.string().optional(),
-  familyMedicalHistory: z.string().optional(),
-  pastMedicalHistory: z.string().optional(),
-  identificationType: z.string().optional(),
-  identificationNumber: z.string().optional(),
+  currentMedication     : z.string().optional(),
+  familyMedicalHistory  : z.string().optional(),
+  pastMedicalHistory    : z.string().optional(),
+  identificationType    : z.string().optional(),
+  identificationNumber  : z.string().optional(),
   identificationDocument: z.custom<File[]>().optional(),
-  treatmentConsent: z
+  treatmentConsent      : z
     .boolean()
     .default(false)
     .refine((value) => value === true, {
@@ -83,29 +83,29 @@ export const PatientFormValidation = z.object({
 });
 
 export const CreateAppointmentSchema = z.object({
-  primaryPhysician: z.string().min(2, "Debe seleccionar al menos un médico"),
-  schedule: z.coerce.date(),
-  reason: z
+  primaryPhysician  : z.string().min(2, "Debe seleccionar al menos un médico"),
+  schedule          : z.coerce.date(),
+  reason            : z
     .string()
     .min(2, "La razón debe contener mínimo 2 caracteres")
     .max(500, "La razón debe contener máximo 500 caracteres"),
-  note: z.string().optional(),
+  note              : z.string().optional(),
   cancellationReason: z.string().optional(),
 });
 
 export const ScheduleAppointmentSchema = z.object({
-  primaryPhysician: z.string().min(2, "Debe seleccionar al menos un médico"),
-  schedule: z.coerce.date(),
-  reason: z.string().optional(),
-  note: z.string().optional(),
+  primaryPhysician  : z.string().min(2, "Debe seleccionar al menos un médico"),
+  schedule          : z.coerce.date(),
+  reason            : z.string().optional(),
+  note              : z.string().optional(),
   cancellationReason: z.string().optional(),
 });
 
 export const CancelAppointmentSchema = z.object({
-  primaryPhysician: z.string().min(2, "Debe seleccionar al menos un médico"),
-  schedule: z.coerce.date(),
-  reason: z.string().optional(),
-  note: z.string().optional(),
+  primaryPhysician  : z.string().min(2, "Debe seleccionar al menos un médico"),
+  schedule          : z.coerce.date(),
+  reason            : z.string().optional(),
+  note              : z.string().optional(),
   cancellationReason: z
     .string()
     .min(2, "La razón debe contener mínimo 2 caracteres")
